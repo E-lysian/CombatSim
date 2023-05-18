@@ -7,7 +7,7 @@ public class NPC : IEntity
         Name = "Goblin";
         CombatHandler = new CombatHandler
         {
-            AttackSpeed = 10,
+            AttackSpeed = 5,
             Attacker = this
         };
     }

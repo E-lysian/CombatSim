@@ -8,9 +8,9 @@ if (npc != null) player?.CombatHandler.HandleEngage(npc);
 
 while (true)
 {
-    Console.WriteLine("Tick..");
     foreach (var entity in NPCLoader.Entities)
         entity.CombatHandler.HandleAttack();
 
     Thread.Sleep(600);
+    Console.WriteLine("Tick..");
 }

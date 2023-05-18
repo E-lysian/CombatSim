@@ -11,7 +11,8 @@ public class CombatHandler
     {
         if (Attacker != null) _target = target;
         if (_target != null) _target.CombatHandler._target = Attacker;
-        _tick = AttackSpeed;
+
+        Attack();
     }
 
     public void HandleAttack()
@@ -19,10 +20,14 @@ public class CombatHandler
         _tick++;
         if (_target != null)
             if (_tick % AttackSpeed == 0)
-            {
-                ConsoleColorHandler.HandleConsoleColor(Attacker);
-                Console.WriteLine($"{Attacker?.Name} Performing attack.. ");
-                ConsoleColorHandler.ResetColor();
-            }
+                Attack();
+    }
+
+    private void Attack()
+    {
+        /* Can Attack? Valid distance, already in combat etc.. */
+        ConsoleColorHandler.HandleConsoleColor(Attacker);
+        Console.WriteLine($"{Attacker?.Name} Performing attack.. ");
+        ConsoleColorHandler.ResetColor();
     }
 }
