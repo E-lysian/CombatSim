@@ -1,4 +1,6 @@
-﻿namespace Combat;
+﻿using Combat.Methods.Melee;
+
+namespace Combat;
 
 public class Player : IEntity
 {
@@ -7,11 +9,13 @@ public class Player : IEntity
         Name = "Elysian";
         CombatHandler = new CombatHandler
         {
-            AttackSpeed = 4,
-            Attacker = this
+            Attacker = this,
+            CombatType = new MeleeCombat(this)
         };
     }
 
     public string Name { get; set; }
     public CombatHandler CombatHandler { get; set; }
+    public int AttackSpeed { get; set; } = 4;
+    public WeaponType WeaponType { get; set; } = WeaponType.SWORD;
 }
