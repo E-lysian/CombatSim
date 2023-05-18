@@ -15,11 +15,11 @@ npc.CombatTarget = player;
 player.InCombat = true;
 npc.InCombat = true;
 
-var combatFactory = new CombatFactory();
+var combatHandler = new CombatHandler();
 while (true)
 {
     foreach (var entity in NPCLoader.Entities.Where(x => x.InCombat).ToList())
-        combatFactory.Attack(entity);
+        combatHandler.Attack(entity);
 
     Thread.Sleep(600);
     Console.WriteLine("Tick..");

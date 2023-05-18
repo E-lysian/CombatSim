@@ -1,6 +1,6 @@
 ﻿namespace Combat.Handlers.Combat;
 
-public class CombatFactory
+public class CombatHandler
 {
     public void Attack(IEntity attacker)
     {
@@ -20,7 +20,8 @@ public class CombatFactory
                 {
                     attacker.CombatTarget.InCombat = false;
                     ConsoleColorHandler.Broadcast(0, $"{attacker.CombatTarget.Name} died.");
-                    Console.WriteLine($"CombatTarget [{attacker.CombatTarget.Name}] no longer in combat with [{attacker.Name}]");
+                    Console.WriteLine(
+                        $"CombatTarget [{attacker.CombatTarget.Name}] no longer in combat with [{attacker.Name}]");
                 }
 
                 attacker.CombatMethod.Tick = 0;
