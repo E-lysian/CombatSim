@@ -9,5 +9,6 @@ public interface IEntity
     public bool InCombat { get; set; }
     public IEntity CombatTarget { get; set; }
     public ICombatMethod CombatMethod { get; set; }
+    public void Attack();
     public Weapon Weapon { get; set; }
 }

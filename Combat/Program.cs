@@ -1,25 +1,47 @@
 ﻿using Combat;
-using Combat.Handlers.Combat;
 using Combat.Methods.Melee;
 
 NPCLoader.Load();
-var player = NPCLoader.Entities.FirstOrDefault(x => x.GetType() == typeof(Player));
-var npc = NPCLoader.Entities.FirstOrDefault(x => x.GetType() == typeof(NPC));
+PlayerLoader.Load();
+var _player = PlayerLoader.Players.FirstOrDefault(x => x.GetType() == typeof(Player));
+var _npc = NPCLoader.Npcs.FirstOrDefault(x => x.GetType() == typeof(NPC));
 
-player.CombatMethod = new MeleeCombat(player);
-npc.CombatMethod = new MeleeCombat(npc);
+_player.CombatMethod = new MeleeCombat(_player);
+_npc.CombatMethod = new MeleeCombat(_npc);
 
-player.CombatTarget = npc;
-npc.CombatTarget = player;
+_player.CombatTarget = _npc;
+_npc.CombatTarget = _player;
 
-player.InCombat = true;
-npc.InCombat = true;
+_player.InCombat = true;
+_npc.InCombat = true;
 
-var combatHandler = new CombatHandler();
 while (true)
 {
-    foreach (var entity in NPCLoader.Entities.Where(x => x.InCombat).ToList())
-        combatHandler.Attack(entity);
+    _player.Attack();
+    _npc.Attack();
+    
+    if (_player?.CombatTarget?.Health <= 0)
+    {
+        ConsoleColorHandler.Broadcast(0,
+            $"{_player.Name} won over {_player.CombatTarget.Name}. Remaining health: {_player.Health}");
+        ConsoleColorHandler.Broadcast(1, $"{_player.Name} Resetting combat.. ");
+        _player.CombatTarget = null;
+    }
+
+    if (_npc?.CombatTarget?.Health <= 0)
+    {
+        ConsoleColorHandler.Broadcast(0,
+            $"{_npc.Name} won over {_npc.CombatTarget.Name}. Remaining health: {_npc.Health}");
+        ConsoleColorHandler.Broadcast(1, $"{_npc.Name} Resetting combat.. ");
+        _npc.CombatTarget = null;
+    }
+
+    /* Reset */
+    if (_player.CombatTarget == null || _npc.CombatTarget == null)
+    {
+        _player.CombatTarget = null;
+        _npc.CombatTarget = null;
+    }
 
     Thread.Sleep(600);
     Console.WriteLine("Tick..");

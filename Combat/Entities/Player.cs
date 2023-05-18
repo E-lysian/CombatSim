@@ -9,6 +9,24 @@ public class Player : IEntity
         Name = "Elysian";
     }
 
+    public void Attack()
+    {
+        if (CombatTarget == null)
+            return;
+        
+        CombatMethod.Tick++;
+        if (CombatMethod.Tick % Weapon.Speed == 0)
+        {
+            var damage = CombatMethod.CalculateDamage();
+            CombatTarget.CombatMethod.TakeDamage(damage.Damage);
+            
+            ConsoleColorHandler.HandleConsoleColor(this);
+            Console.WriteLine($"{Name} attacking {CombatTarget.Name}");
+            ConsoleColorHandler.ResetColor();
+            CombatMethod.Tick = 0;
+        }
+    }
+
     public string Name { get; set; }
     public int Health { get; set; } = 15;
     public bool InCombat { get; set; }
