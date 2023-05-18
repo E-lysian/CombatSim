@@ -16,6 +16,23 @@ public abstract class ConsoleColorHandler
         }
     }
 
+    public static void Broadcast(int type, string message)
+    {
+        switch (type)
+        {
+            case 0:
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(message);
+                break;
+            case 1:
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(message);
+                break;
+        }
+
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
     public static void ResetColor()
     {
         Console.ForegroundColor = ConsoleColor.White;

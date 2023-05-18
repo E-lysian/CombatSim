@@ -10,19 +10,24 @@ public class MeleeCombat : ICombatMethod
         AttackDistance = _entity.Weapon.Type == WeaponType.HALBERD ? 2 : 1;
     }
 
-    public CombatHit PerformDamage()
+    public CombatHit CalculateDamage()
     {
         /* Combat formula etc */
         return new CombatHit
         {
-            Damage = new Random().Next(0, 10),
+            Damage = 5,
             Delay = 0,
             Type = 1
         };
     }
+    
+    public void TakeDamage(int damage)
+    {
+        _entity.Health -= damage;
+    }
 
+    public int Tick { get; set; }
     public int AttackDistance { get; set; }
-
 
     public CombatHit[] HitCollection { get; set; }
 }
