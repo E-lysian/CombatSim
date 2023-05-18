@@ -20,7 +20,7 @@ public class CombatHandler
     {
         _tick++;
         if (_target != null)
-            if (_tick % Attacker?.AttackSpeed == 0)
+            if (_tick % Attacker?.Weapon.Speed == 0)
                 Attack();
     }
 
