@@ -1,5 +1,4 @@
-﻿using System.Data.Common;
-using Combat.Methods.Melee;
+﻿using Combat.Methods.Melee;
 
 namespace Combat;
 
@@ -8,7 +7,6 @@ public class CombatHandler
     private IEntity? _target;
     private int _tick;
     public IEntity? Attacker { get; set; }
-
     public ICombatMethod CombatType { get; set; }
 
     public void HandleEngage(IEntity target)
@@ -31,7 +29,7 @@ public class CombatHandler
         /* Can Attack? Valid distance, already in combat etc.. */
         var damage = CombatType.PerformDamage();
         ConsoleColorHandler.HandleConsoleColor(Attacker);
-        Console.WriteLine($"+ {Attacker?.Name} Performing attack: WeaponType {Attacker.WeaponType}. Dealt {damage.Damage} damage of type {damage.Type} with {damage.Delay} ticks of delay.");
+        Console.WriteLine($"+ {Attacker?.Name} Performing attack: WeaponType {Attacker.Weapon.Type}. Dealt {damage.Damage} damage of type {damage.Type} with {damage.Delay} ticks of delay.");
         ConsoleColorHandler.ResetColor();
     }
 }

@@ -17,5 +17,5 @@ public class NPC : IEntity
     public string Name { get; set; }
     public CombatHandler CombatHandler { get; set; }
     public int AttackSpeed { get; set; } = 5;
-    public WeaponType WeaponType { get; set; } = WeaponType.HAND;
+    public Weapon Weapon { get; set; } = new(0, 0, 5, new CombatAnimations(0, 0, 0), WeaponType.HAND);
 }

@@ -7,11 +7,12 @@ public class MeleeCombat : ICombatMethod
     public MeleeCombat(IEntity entity)
     {
         _entity = entity;
-        AttackDistance = _entity.WeaponType == WeaponType.HALBERD ? 2 : 1;
+        AttackDistance = _entity.Weapon.Type == WeaponType.HALBERD ? 2 : 1;
     }
 
     public CombatHit PerformDamage()
     {
+        /* Combat formula etc */
         return new CombatHit
         {
             Damage = new Random().Next(0, 10),
@@ -21,5 +22,7 @@ public class MeleeCombat : ICombatMethod
     }
 
     public int AttackDistance { get; set; }
+
+
     public CombatHit[] HitCollection { get; set; }
 }
