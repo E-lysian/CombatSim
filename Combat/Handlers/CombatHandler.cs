@@ -17,7 +17,8 @@ public class CombatHandler
         {
             if (entity == null) continue;
             if (!entity.InCombat)
-                entity.CombatTarget = null;
+                if (entity.CombatTarget != null)
+                    entity.CombatTarget = null;
         }
     }
 }
