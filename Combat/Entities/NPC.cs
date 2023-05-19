@@ -14,5 +14,6 @@ public class NPC : IEntity
     public bool InCombat { get; set; }
     public IEntity CombatTarget { get; set; }
     public ICombatMethod CombatMethod { get; set; }
-    public Weapon Weapon { get; set; } = new(0, 0, 4, new CombatAnimations(0, 0, 0), WeaponType.HAND);
+    public Weapon Weapon { get; set; } = new(0, 0, 5, new CombatAnimations(0, 0, 0), WeaponType.HAND);
+    public bool ResetCombat { get; set; } = false;
 }

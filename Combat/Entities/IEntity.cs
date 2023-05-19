@@ -10,4 +10,5 @@ public interface IEntity
     public IEntity? CombatTarget { get; set; }
     public ICombatMethod CombatMethod { get; set; }
     public Weapon Weapon { get; set; }
+    bool ResetCombat { get; set; }
 }

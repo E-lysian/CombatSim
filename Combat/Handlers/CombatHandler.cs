@@ -16,9 +16,8 @@ public class CombatHandler
         foreach (var entity in entities)
         {
             if (entity == null) continue;
-            if (!entity.InCombat)
-                if (entity.CombatTarget != null)
-                    entity.CombatTarget = null;
+            if (entity.ResetCombat)
+                entity.CombatTarget = null;
         }
     }
 }

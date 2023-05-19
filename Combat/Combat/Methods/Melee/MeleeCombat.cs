@@ -28,9 +28,8 @@ public class MeleeCombat : ICombatMethod
             if (_attacker.CombatTarget.Health <= 0)
             {
                 ConsoleColorHandler.Broadcast(1, $"{_attacker.Name} won over {_attacker.CombatTarget.Name}.");
-                _attacker.CombatTarget.InCombat = false;
-                _attacker.CombatTarget = null;
-                _attacker.InCombat = false;
+                _attacker.CombatTarget.ResetCombat = true;
+                _attacker.ResetCombat = true;
             }
 
             _attacker.CombatMethod.Tick = 0;

@@ -15,4 +15,5 @@ public class Player : IEntity
     public IEntity CombatTarget { get; set; }
     public ICombatMethod CombatMethod { get; set; }
     public Weapon Weapon { get; set; } = new(4151, 70, 4, new CombatAnimations(1658, 1659, 1111), WeaponType.SWORD);
+    public bool ResetCombat { get; set; } = false;
 }
