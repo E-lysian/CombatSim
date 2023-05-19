@@ -10,7 +10,7 @@ public class CombatHandler
             entity.CombatMethod.Attack();
         }
     }
-    
+
     public static void ResetCombatTarget(IEnumerable<IEntity> entities)
     {
         foreach (var entity in entities)
