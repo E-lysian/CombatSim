@@ -18,12 +18,21 @@ public class MeleeCombat : ICombatMethod
         _attacker.CombatMethod.Tick++;
         if (_attacker.CombatMethod.Tick % _attacker.Weapon.Speed == 0)
         {
-            var damage = _attacker.CombatMethod.CalculateDamage();
-            _attacker.CombatTarget.CombatMethod.TakeDamage(damage.Damage);
-
             ConsoleColorHandler.HandleConsoleColor(_attacker);
             Console.WriteLine($"{_attacker.Name} attacking {_attacker.CombatTarget.Name}");
             ConsoleColorHandler.ResetColor();
+
+            var damage = _attacker.CombatMethod.CalculateDamage();
+            _attacker.CombatTarget.CombatMethod.TakeDamage(damage.Damage);
+
+            if (_attacker.CombatTarget.Health <= 0)
+            {
+                ConsoleColorHandler.Broadcast(1, $"{_attacker.Name} won over {_attacker.CombatTarget.Name}.");
+                _attacker.CombatTarget.InCombat = false;
+                _attacker.CombatTarget = null;
+                _attacker.InCombat = false;
+            }
+
             _attacker.CombatMethod.Tick = 0;
         }
     }
