@@ -3,45 +3,45 @@ using Combat.Methods.Melee;
 
 NPCLoader.Load();
 PlayerLoader.Load();
-var _player = PlayerLoader.Players.FirstOrDefault(x => x.GetType() == typeof(Player));
-var _npc = NPCLoader.Npcs.FirstOrDefault(x => x.GetType() == typeof(NPC));
 
-_player.CombatMethod = new MeleeCombat(_player);
-_npc.CombatMethod = new MeleeCombat(_npc);
+var player = PlayerLoader.Players.FirstOrDefault(x => x.GetType() == typeof(Player)) ??
+             throw new ArgumentNullException(typeof(Player).ToString());
+var npc = NPCLoader.Npcs.FirstOrDefault(x => x.GetType() == typeof(NPC)) ??
+          throw new ArgumentNullException(typeof(NPC).ToString());
 
-_player.CombatTarget = _npc;
-_npc.CombatTarget = _player;
+player.CombatMethod = new MeleeCombat(player);
+npc.CombatMethod = new MeleeCombat(npc);
 
-_player.InCombat = true;
-_npc.InCombat = true;
+player.CombatTarget = npc;
+npc.CombatTarget = player;
+
+player.InCombat = true;
+npc.InCombat = true;
 
 while (true)
 {
-    _player.Attack();
-    _npc.Attack();
-    
-    if (_player?.CombatTarget?.Health <= 0)
+    player.CombatMethod.Attack();
+    npc.CombatMethod.Attack();
+
+    if (player.CombatTarget?.Health <= 0)
     {
         ConsoleColorHandler.Broadcast(0,
-            $"{_player.Name} won over {_player.CombatTarget.Name}. Remaining health: {_player.Health}");
-        ConsoleColorHandler.Broadcast(1, $"{_player.Name} Resetting combat.. ");
-        _player.CombatTarget = null;
+            $"{player.Name} won over {player.CombatTarget.Name}. Remaining health: {player.Health}");
+        ConsoleColorHandler.Broadcast(1, $"{player.Name} Resetting combat.. ");
+        player.CombatTarget = null;
     }
 
-    if (_npc?.CombatTarget?.Health <= 0)
+    if (npc.CombatTarget?.Health <= 0)
     {
         ConsoleColorHandler.Broadcast(0,
-            $"{_npc.Name} won over {_npc.CombatTarget.Name}. Remaining health: {_npc.Health}");
-        ConsoleColorHandler.Broadcast(1, $"{_npc.Name} Resetting combat.. ");
-        _npc.CombatTarget = null;
+            $"{npc.Name} won over {npc.CombatTarget.Name}. Remaining health: {npc.Health}");
+        ConsoleColorHandler.Broadcast(1, $"{npc.Name} Resetting combat.. ");
+        npc.CombatTarget = null;
     }
 
     /* Reset */
-    if (_player.CombatTarget == null || _npc.CombatTarget == null)
-    {
-        _player.CombatTarget = null;
-        _npc.CombatTarget = null;
-    }
+    if (player.CombatTarget == null || npc.CombatTarget == null)
+        player.CombatTarget = npc.CombatTarget = null;
 
     Thread.Sleep(600);
     Console.WriteLine("Tick..");
