@@ -164,10 +164,5 @@ public enum DamageType
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
 * [OldSchool RuneScape](https://oldschool.runescape.com/)
 * [OSRS Wiki](https://oldschool.runescape.wiki/)
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
