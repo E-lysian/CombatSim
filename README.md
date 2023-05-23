@@ -118,7 +118,7 @@ public Weapon Weapon { get; set; } = new(0, 0, 8, new CombatAnimations(0, 0, 0),
 <br/>
 
 ### Modify the combat formula
-In order to modify the <a href="https://oldschoolrunescape.fandom.com/wiki/Maximum_melee_hit"><strong>Combat Formula</strong></a>, based on the combat style (Melee, Mage or Range), you want to head over to [MeleeCombat](https://github.com/E-lysian/CombatSim/blob/master/Combat/Handlers/Combat/Methods/Melee/MeleeCombat.cs)<br/> which best demonstrates how this can be achieved.<br/>
+In order to modify the <a href="https://oldschoolrunescape.fandom.com/wiki/Maximum_melee_hit"><strong>Combat Formula</strong></a>, based on the combat style (Melee, Mage or Range), you want to head over to [MeleeCombat](https://github.com/E-lysian/CombatSim/blob/master/Combat/Combat/Methods/Melee/MeleeCombat.cs)<br/> which best demonstrates how this can be achieved.<br/>
 As of right now the damage you inflict with melee is set to a constant value of `5`. <br/>This does not accurately demonstrate how an entity inflicts damage to another entity.
 
 
@@ -137,7 +137,7 @@ public CombatHit CalculateDamage()
 <br/>
 
 
-There are different types of damage in RuneScape which can be demonstrated by the [DamageType](https://github.com/E-lysian/CombatSim/blob/master/Combat/Handlers/Combat/DamageType.cs) enum.
+There are different types of damage in RuneScape which can be demonstrated by the [DamageType](https://github.com/E-lysian/CombatSim/blob/master/Combat/Combat/DamageType.cs) enum.
 
 ```cs
 public enum DamageType
@@ -207,10 +207,5 @@ public Weapon Weapon { get; set; } = new(4151, 70, 4, new CombatAnimations(1658,
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
 * [OldSchool RuneScape](https://oldschool.runescape.com/)
 * [OSRS Wiki](https://oldschool.runescape.wiki/)
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
