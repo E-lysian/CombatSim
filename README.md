@@ -152,6 +152,49 @@ public enum DamageType
 
 
 
+### Draw
+NPC Settings
+```cs
+public int Health { get; set; } = 6;
+public Weapon Weapon { get; set; } = new(0, 0, 3, new CombatAnimations(0, 0, 0), WeaponType.HAND);
+```
+
+Player Settings
+```cs
+public int Health { get; set; } = 6;
+public Weapon Weapon { get; set; } = new(4151, 70, 4, new CombatAnimations(1658, 1659, 1111), WeaponType.SWORD);
+```
+<br/>
+
+### Player Win
+NPC Settings
+```cs
+public int Health { get; set; } = 10;
+public Weapon Weapon { get; set; } = new(0, 0, 4, new CombatAnimations(0, 0, 0), WeaponType.HAND);
+```
+
+Player Settings
+```cs
+public int Health { get; set; } = 10;
+public Weapon Weapon { get; set; } = new(4151, 70, 4, new CombatAnimations(1658, 1659, 1111), WeaponType.SWORD);
+```
+
+<br/>
+
+### NPC Win
+NPC Settings
+```cs
+public int Health { get; set; } = 15;
+public Weapon Weapon { get; set; } = new(0, 0, 4, new CombatAnimations(0, 0, 0), WeaponType.HAND);
+```
+
+Player Settings
+```cs
+public int Health { get; set; } = 10;
+public Weapon Weapon { get; set; } = new(4151, 70, 4, new CombatAnimations(1658, 1659, 1111), WeaponType.SWORD);
+```
+
+
 
 <!-- ROADMAP -->
 ## Roadmap

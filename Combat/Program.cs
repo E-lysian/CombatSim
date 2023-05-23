@@ -8,28 +8,33 @@ var player = PlayerLoader.Players.FirstOrDefault(x => x.GetType() == typeof(Play
 var npc = NPCLoader.Npcs.FirstOrDefault(x => x.GetType() == typeof(NPC));
 
 if (player == null || npc == null)
-    throw new NullReferenceException("Player or NPC os null.");
+    throw new NullReferenceException("Player or NPC is null.");
 
-player.CombatMethod = new MeleeCombat(player);
-npc.CombatMethod = new MeleeCombat(npc);
 
-player.CombatTarget = npc;
-npc.CombatTarget = player;
+player.MeleeCombatManager.Target = npc;
+player.MeleeCombatManager.IsInitiator = true;
 
-player.InCombat = true;
-npc.InCombat = true;
+npc.MeleeCombatManager.Target = player;
 
 while (true)
 {
-    // Attack Players
-    CombatHandler.PerformAttack(PlayerLoader.Players);
-
-    // Attack NPCs
-    CombatHandler.PerformAttack(NPCLoader.Npcs);
-
-    /* Reset */
-    CombatHandler.ResetCombatTarget(PlayerLoader.Players);
-    CombatHandler.ResetCombatTarget(NPCLoader.Npcs);
+    if (Math.Abs(player.Y - npc.Y) <= 1)
+    {
+        Console.WriteLine("Within range..");
+        player.MeleeCombatManager.Attack();
+        npc.MeleeCombatManager.Attack();
+        
+        player.MeleeCombatManager.CheckWonBattle();
+        player.MeleeCombatManager.CheckLostBattle();
+        
+        npc.MeleeCombatManager.CheckWonBattle();
+        npc.MeleeCombatManager.CheckLostBattle();
+    }
+    else
+    {
+        Console.WriteLine("Not within range..");
+        player.Y += 1;
+    }
 
     Thread.Sleep(600);
     Console.WriteLine("Tick..");

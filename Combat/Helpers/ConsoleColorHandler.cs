@@ -2,7 +2,7 @@
 
 public abstract class ConsoleColorHandler
 {
-    public static void HandleConsoleColor(IEntity? Attacker)
+    public static void HandleConsoleHelper(IEntity? Attacker)
     {
         if (Attacker == null) throw new NullReferenceException("Attacker is null.");
         switch (Attacker)
@@ -26,6 +26,10 @@ public abstract class ConsoleColorHandler
                 break;
             case 1:
                 Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(message);
+                break;
+            case 2:
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(message);
                 break;
         }
